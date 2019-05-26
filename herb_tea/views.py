@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from .models import Cruiser
 
+import django_filters
+from rest_framework import viewsets, filters
+from .models import User, Entry
+from .serializer import UserSerializer, EntrySerializer
+
 # Create your views here.
 
 class index(TemplateView):
@@ -36,3 +41,10 @@ class portfolio(TemplateView):
         #return render(self.request, self.template_name, context)
         return render(self.request, self.template_name, {'cruiser_list': cruiser_list})
 
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class EntryViewSet(viewsets.ModelViewSet):
+    queryset = Entry.objects.all()
+    serializer_class = EntrySerializer

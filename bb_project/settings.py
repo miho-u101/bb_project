@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'herb_tea',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

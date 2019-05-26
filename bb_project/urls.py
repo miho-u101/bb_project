@@ -18,8 +18,13 @@ from django.urls import path
 from . import settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
+from django.conf.urls import url, include
+from rest_framework import routers
+from herb_tea.urls import router as blog_router
 import herb_tea.views
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +33,7 @@ urlpatterns = [
     path('blog/', herb_tea.views.blog.as_view(), name='blog'),
     path('contact/', herb_tea.views.contact.as_view(), name='contact'),
     path('portfolio/', herb_tea.views.portfolio.as_view(), name='portfolio'),
+    url(r'^api/', include(blog_router.urls)),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
